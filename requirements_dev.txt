@@ -8,4 +8,5 @@ coverage==4.5.2
 Sphinx==1.8.4
 twine==1.13.0
 
+requests=2.21.0
 python-bitcoinrpc=1.0

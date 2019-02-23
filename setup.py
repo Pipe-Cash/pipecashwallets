@@ -11,11 +11,11 @@ with open('README.rst') as readme_file:
 with open('HISTORY.rst') as history_file:
     history = history_file.read()
 
-requirements = [ ]
+requirements = [ "python-bitcoinrpc", "requests" ]
 
-setup_requirements = [ "python-bitcoinrpc" ]
+setup_requirements = [ ]
 
-test_requirements = [ "python-bitcoinrpc" ]
+test_requirements = [ "python-bitcoinrpc", "requests" ]
 
 setup(
     author="Aleksandar Nikolaev Dinkov",
