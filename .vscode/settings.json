@@ -1,4 +1,18 @@
 {
-    "restructuredtext.confPath": "",
-    "python.linting.pylintEnabled": true
+    "python.unitTest.unittestEnabled": true,
+    "python.unitTest.unittestArgs": [
+        "-v",
+        "-s",
+        "tests",
+        // "-p",
+        // "test_*.py"
+    ],
+    "pythonTestExplorer.testFramework": "unittest",
+    "python.analysis.logLevel": "Warning",
+    "python.analysis.openFilesOnly": false,
+    "python.linting.pylintEnabled": true,
+
+
+    "python.pythonPath": "python",
+    "restructuredtext.confPath": "${workspaceFolder}/docs",
 }
