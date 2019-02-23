@@ -27,7 +27,8 @@ class BitcoinSV_RPC:
             "rpcport": 8332,
             "rpcLogLevel": 'DEBUG',
             "accountName": "",
-            "minConf": 1,
+            "minConf": 0,
+            "includeWatchOnly": False
         }
 
         self.uses_secret_variables = [
@@ -50,8 +51,10 @@ class BitcoinSV_RPC:
         user = self.secrets["BITCOIN_SV_RPC_WALLET_USER"]
         password = self.secrets["BITCOIN_SV_RPC_WALLET_PASSWORD"]
 
-        self.rpc = AuthServiceProxy("http://%s:%s@%s:%s" % (
-            user, password, addr, port))
+        url = "http://%s:%s@%s:%s" % (user, password, addr, port)
+
+        self.log.info("Attempting to connect to " + url)
+        self.rpc = AuthServiceProxy(url)
         self.rpc.getnetworkinfo()
 
     def validate_options(self):
@@ -63,50 +66,69 @@ class BitcoinSV_RPC:
         self.__validate_option(
             "rpcport", int, lambda p: 0 < p and p < 10000, "between 0 and 10000")
 
-        self.__validate_option("rpcLogLevel", str,
+        self.__validate_option(
+            "rpcLogLevel", str,
             lambda l: l in ['DEBUG', 'INFO', 'WARN', 'ERROR'],
             "one of ['DEBUG', 'INFO', 'WARN', 'ERROR']")
 
         self.__validate_option("accountName", str)
 
-        self.__validate_option("minConf", int, lambda i: i>=0, " 0 or bigger")
+        self.__validate_option(
+            "minConf", int, lambda i: i >= 0, " 0 or bigger")
+
+        self.__validate_option("includeWatchOnly", bool)
 
     def __validate_option(self, optionName, optionType, condition=None, conditionMessage=""):
         if type(self.options[optionName]) != optionType:
             raise AssertionError(optionName + " should be " + str(optionType))
         if condition is not None:
             if not condition(self.options[optionName]):
-                raise AssertionError(optionName + " should be " + str(conditionMessage))
+                raise AssertionError(
+                    optionName + " should be " + str(conditionMessage))
 
     def check_dependencies_missing(self):
         from bitcoinrpc.authproxy import AuthServiceProxy, JSONRPCException
 
     def checkBalance(self):
-        self.__try(
-            lambda: self.rpc.getbalance(self.options["accountName"]),
+        return self.__try(
+            lambda: self.rpc.getbalance(
+                self.options["accountName"],
+                self.options["minConf"],
+                self.options["includeWatchOnly"],),
             "checkBalance")
 
     def send(self, amount, address):
         self.__try(
-            lambda: self.rpc.sendfrom(self.options["accountName"], address, amount),
+            lambda: self.rpc.sendfrom(
+                self.options["accountName"], address, amount),
             "send")
 
     def getReceiveAddress(self):
-        self.__try(
+        return self.__try(
             lambda: self.rpc.getnewaddress(self.options["accountName"]),
             "getReceiveAddress")
 
     def getLatestTransactions(self, numOfTransactions=10, transactionsToSkip=0):
-        self.__try(
+        txs = self.__try(
             lambda: self.rpc.listtransactions(
                 self.options["accountName"], numOfTransactions, transactionsToSkip),
             "getLatestTransactions")
 
+        for tx in txs:
+            cat = tx["category"]
+            if cat in ["generate", "receive"]:
+                tx["received"] = True
+            elif cat in ["send"]:
+                tx["received"] = False
+            else: # example "orphan" or "immature"
+                tx["received"] = None
+
+        return txs
+
     def __try(self, function, functionName):
         try:
             result = function()
-            return function
+            return result
         except Exception as ex:
             self.log.error("Error in %s.%s() : %s" % (
-                self.__class__.__name__, str(ex)))
-
+                self.__class__.__name__, functionName, str(ex)))
