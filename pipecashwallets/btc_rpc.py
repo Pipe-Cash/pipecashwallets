@@ -38,6 +38,3 @@ class BitcoinBTC_RPC:
 
     def getLatestTransactions(self, numOfTransactions=10, transactionsToSkip=0):
         raise NotImplementedError()
-
-    def __try(self, function, functionName):
-        raise NotImplementedError()
