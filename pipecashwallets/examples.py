@@ -105,9 +105,9 @@ class ExampleWallet:
 
         Each transaction should be represented as a 'dict' like:
         {
-            'amount': float,
-            'timestamp': int = epoch timestamp in seconds
-            'received': bool = True if received money, False if sent money.
+            'amount': Decimal,
+            'time': int = epoch timestamp in seconds
+            'received': bool = True if received money, False if sent money, None if not applicalble.
             'confirmations': int = how many blocks confirm the transaction.
         }
 
