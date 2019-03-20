@@ -30,10 +30,11 @@ class ExampleMinimalWallet:
         'transactionsToSkip' specifies how many (newer) transactions to skip, before getting the older ones
 
         Each transaction should be represented as a 'dict' like:
+        
         {
-            'amount': float,
-            'timestamp': int = epoch timestamp in seconds
-            'reveived': bool = True if received money, False if sent money.
+            'amount': Decimal = the total sum of money transfered in this TX (positive number for receiving and negative otherwise)
+            'time': int = epoch timestamp in seconds
+            'id': string = the transaction id
             'confirmations': int = how many blocks confirm the transaction.
         }
 
@@ -104,10 +105,11 @@ class ExampleWallet:
         'transactionsToSkip' specifies how many (newer) transactions to skip, before getting the older ones
 
         Each transaction should be represented as a 'dict' like:
+
         {
-            'amount': Decimal,
+            'amount': Decimal = the total sum of money transfered in this TX (positive number for receiving and negative otherwise)
             'time': int = epoch timestamp in seconds
-            'received': bool = True if received money, False if sent money, None if not applicalble.
+            'id': string = the transaction id
             'confirmations': int = how many blocks confirm the transaction.
         }
 

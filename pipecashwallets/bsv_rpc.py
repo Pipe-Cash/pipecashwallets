@@ -114,14 +114,19 @@ class BitcoinSV_RPC:
                 self.options["accountName"], numOfTransactions, transactionsToSkip),
             "getLatestTransactions")
 
+        #TODO: ensure tx["id"] is present and with that name
+
         for tx in txs:
             cat = tx["category"]
             if cat in ["generate", "receive"]:
-                tx["received"] = True
+                pass
+                # received bitcoin
             elif cat in ["send"]:
-                tx["received"] = False
+                tx["amount"] = -tx["amount"]
+                # money left the wallet
             else: # example "orphan" or "immature"
-                tx["received"] = None
+                tx["amount"] = 0
+                # no real funds were sent
 
         return txs
 
