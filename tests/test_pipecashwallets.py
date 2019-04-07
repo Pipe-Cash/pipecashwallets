@@ -16,6 +16,7 @@ class TestPipecashwallets(unittest.TestCase):
         """Tear down test fixtures, if any."""
 
     def test_import_modules(self):
+        from pipecashwallets import BitSV
         from pipecashwallets import BitcoinSV_RPC
 
         # UNFINISHED:
