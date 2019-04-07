@@ -32,7 +32,7 @@ class ExampleMinimalWallet:
         Each transaction should be represented as a 'dict' like:
         
         {
-            'amount': Decimal = the total sum of money transfered in this TX (positive number for receiving and negative otherwise)
+            'amount': Decimal = the total sum of money transfered in this TX (a positive number)
             'time': int = epoch timestamp in seconds
             'id': string = the transaction id
             'confirmations': int = how many blocks confirm the transaction.
@@ -107,7 +107,7 @@ class ExampleWallet:
         Each transaction should be represented as a 'dict' like:
 
         {
-            'amount': Decimal = the total sum of money transfered in this TX (positive number for receiving and negative otherwise)
+            'amount': Decimal = the total sum of money transfered in this TX (a positive number)
             'time': int = epoch timestamp in seconds
             'id': string = the transaction id
             'confirmations': int = how many blocks confirm the transaction.

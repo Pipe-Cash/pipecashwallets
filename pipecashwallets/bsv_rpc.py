@@ -118,12 +118,13 @@ class BitcoinSV_RPC:
 
         for tx in txs:
             cat = tx["category"]
+
             if cat in ["generate", "receive"]:
                 pass
                 # received bitcoin
             elif cat in ["send"]:
-                tx["amount"] = -tx["amount"]
                 # money left the wallet
+                pass
             else: # example "orphan" or "immature"
                 tx["amount"] = 0
                 # no real funds were sent
