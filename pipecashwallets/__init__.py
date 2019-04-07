@@ -4,7 +4,7 @@
 
 __author__ = """Aleksandar Nikolaev Dinkov"""
 __email__ = 'alexander.n.dinkov@gmail.com'
-__version__ = '0.1.1'
+__version__ = '0.1.2.0'
 
 from pipecashwallets.bitsv_wallet import *
 from pipecashwallets.bsv_rpc import *
