@@ -2,6 +2,10 @@
 History
 =======
 
+0.1.2.1 (2019-02-22)
+------------------
+- bug fixes
+
 0.1.2.0 (2019-02-22)
 ------------------
 - Hidden the unfinished wallets (no reference in __init__)
