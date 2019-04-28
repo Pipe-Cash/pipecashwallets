@@ -52,6 +52,8 @@ class BitSV:
     def send(self, amount, address):
         '''Sends funds to the specified address'''
         sats = int(decimal.Decimal(amount) * self.satInB)
+
+        self.key.get_unspents()
         tx = self.key.create_transaction([
             (address, sats, 'satoshi')
         ])
