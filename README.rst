@@ -23,7 +23,7 @@ pipecashwallets
 A collection of wallet modules for PipeCaead http://pipe.cash/ for more information.
 
 
-* Free software: MIT license
+* License: OPEN BLOCKCHAIN-SPECIFIC LICENSE
 * Documentation: https://pipecashwallets.readthedocs.io.
 
 
