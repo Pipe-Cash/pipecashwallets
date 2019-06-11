@@ -2,6 +2,12 @@
 pipecashwallets
 ===============
 
+A collection of wallet modules for PipeCaead http://pipe.cash/ for more information.
+
+
+* License: OPEN BLOCKCHAIN-AND-FIAT-SPECIFIC LICENSE
+* Documentation: https://pipecashwallets.readthedocs.io.
+
 
 .. image:: https://img.shields.io/pypi/v/pipecashwallets.svg
         :target: https://pypi.python.org/pypi/pipecashwallets
@@ -17,14 +23,6 @@ pipecashwallets
 .. image:: https://pyup.io/repos/github/Pipe-Cash/pipecashwallets/shield.svg
      :target: https://pyup.io/repos/github/Pipe-Cash/pipecashwallets/
      :alt: Updates
-
-
-
-A collection of wallet modules for PipeCaead http://pipe.cash/ for more information.
-
-
-* License: OPEN BLOCKCHAIN-AND-FIAT-SPECIFIC LICENSE
-* Documentation: https://pipecashwallets.readthedocs.io.
 
 
 Installation
