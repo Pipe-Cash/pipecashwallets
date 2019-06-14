@@ -10,4 +10,4 @@ twine==1.13.0
 requests=2.21.0
 python-bitcoinrpc=1.0
 
-pipecash==0.1.0.3
+pipecash==0.1.0.4
