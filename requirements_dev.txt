@@ -6,7 +6,7 @@ flake8==3.7.7
 tox==3.12.1
 coverage==4.5.3
 Sphinx==2.1.1
-twine==1.13.0
+twine==4.0.0
 requests=2.21.0
 python-bitcoinrpc=1.0
 
